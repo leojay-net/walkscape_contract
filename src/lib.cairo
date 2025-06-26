@@ -21,6 +21,7 @@ pub trait IWalkScapeCore<TContractState> {
     fn feed_pet(ref self: TContractState, pet_id: u256, nutrition_score: u256);
     fn evolve_pet(ref self: TContractState, pet_id: u256);
     fn get_pet_stats(self: @TContractState, pet_id: u256) -> PetStats;
+    fn get_player_pets(self: @TContractState, player: ContractAddress) -> Array<u256>;
     
     // Colony System (Social Groups)
     fn create_colony(ref self: TContractState, name: felt252) -> u256;
@@ -414,9 +415,10 @@ mod WalkScapeCore {
             self.player_pets.entry((caller, player_pet_count)).write(pet_id);
             self.player_pet_count.entry(caller).write(player_pet_count + 1);
             
-            // Update player stats
+            // Update player stats and deduct XP cost
             let mut stats = self.players.entry(caller).read();
             stats.pets_owned += 1;
+            stats.walks_xp -= 100; // Deduct the 100 XP cost
             self.players.entry(caller).write(stats);
             
             self.emit(PetMinted { owner: caller, pet_id, pet_type });
@@ -483,6 +485,20 @@ mod WalkScapeCore {
 
         fn get_pet_stats(self: @ContractState, pet_id: u256) -> PetStats {
             self.pets.entry(pet_id).read()
+        }
+
+        fn get_player_pets(self: @ContractState, player: ContractAddress) -> Array<u256> {
+            let mut pet_ids = ArrayTrait::new();
+            let pet_count = self.player_pet_count.entry(player).read();
+            
+            let mut i = 0;
+            while i < pet_count {
+                let pet_id = self.player_pets.entry((player, i)).read();
+                pet_ids.append(pet_id);
+                i += 1;
+            };
+            
+            pet_ids
         }
 
         fn create_colony(ref self: ContractState, name: felt252) -> u256 {

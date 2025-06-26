@@ -1,8 +1,8 @@
 {
     "network": "starknet-sepolia",
     "contract_name": "WalkScapeCore",
-    "contract_address": "0x03c29b71472f27ce4d5540844bb5a9ed2725d11918795aa26d65ae8bd2a2acf2",
-    "class_hash": "0x0216461ae25bc056d7ba28062dde6c756d48ea497e07af40b420f94ee0843078",
+    "contract_address": "0x006a65f237b636fe5e2fc8c4f470309582312a24bd3cbd5be288aa32ed8b4f9a",
+    "class_hash": "0x07777a2faea67853500fa304e0cfcced3874de6a076198165500f4cc1859044e",
     "admin_address": "0x154987c2e5da4057732b005c5a9c747f15a15602fba13152d68744d23e29da6",
     "deployed_at": "2025-06-25T19:54:19Z",
     "rpc_url": "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/kwgGr9GGk4YyLXuGfEvpITv1jpvn3PgP",
