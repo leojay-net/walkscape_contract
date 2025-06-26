@@ -1,3 +1,5 @@
+# Frontend Application Repository : https://github.com/leojay-net/walkscape_app
+
 # WalkScape Smart Contract
 
 A comprehensive blockchain-powered location-based exploration game built on Starknet using Cairo. This smart contract enables real-world exploration mechanics with digital rewards, pet breeding, social colonies, and decentralized staking.
